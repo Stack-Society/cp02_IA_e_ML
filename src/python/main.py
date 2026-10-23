@@ -13,3 +13,18 @@ def carregar_dados():
  
 instrumentos = carregar_dados()
 
+
+# ---------- 2. Telemetria ----------
+
+eventos = []
+ 
+ 
+def registrar_telemetria(evento):
+    hora = datetime.now().strftime("%H:%M:%S")
+    eventos.append({"hora": hora, "evento": evento})
+ 
+    item = document.createElement("li")
+    item.innerText = f"[{hora}] {evento}"
+    document.querySelector("#log-telemetria").prepend(item)
+
+
