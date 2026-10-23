@@ -174,3 +174,12 @@ def analisar(event):
     registrar_telemetria(
         f"Análise vetorial: {instrumento['nome']}"
     )
+
+
+# ---------- Inicializador ----------
+renderizar_cards(instrumentos)
+preencher_select()
+
+registrar_telemetria(
+    f"Sistema iniciado com {len(instrumentos)} instrumentos"
+)
