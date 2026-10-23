@@ -3,8 +3,8 @@ import numpy as np
 from datetime import datetime
 from pyscript import document, when
 
-# ---------- 1. Carregar dados ----------
 
+# ---------- 1. Carregar dados ----------
 def carregar_dados():
     with open("dados.json", encoding="utf-8") as arquivo:
         dados = json.load(arquivo)
@@ -15,7 +15,6 @@ instrumentos = carregar_dados()
 
 
 # ---------- 2. Telemetria ----------
-
 eventos = []
  
  
@@ -51,3 +50,18 @@ def validar_entrada(texto):
     return True, texto
  
  
+# ---------- 4. Cálculo vetorial ----------
+def calcular_norma(embedding):
+    vetor = np.array(embedding)
+    return float(np.linalg.norm(vetor))
+ 
+ 
+def calcular_distancia(emb_a, emb_b):
+    return float(np.linalg.norm(np.array(emb_a) - np.array(emb_b)))
+ 
+ 
+def mais_parecido(instrumento):
+    outros = [i for i in instrumentos if i["id"] != instrumento["id"]]
+    return min(outros, key=lambda i: calcular_distancia(instrumento["embedding"], i["embedding"]))
+
+
