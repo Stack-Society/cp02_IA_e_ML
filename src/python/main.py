@@ -28,3 +28,26 @@ def registrar_telemetria(evento):
     document.querySelector("#log-telemetria").prepend(item)
 
 
+# ---------- 3. Guardrails ----------
+PALAVRAS_BLOQUEADAS = ["<script", "drop", "delete", "select *"]
+ 
+ 
+def validar_entrada(texto):
+    texto = texto.strip()
+ 
+    if texto == "":
+        return False, "Digite o nome de um instrumento."
+ 
+    if len(texto) > 30:
+        return False, "Texto muito longo (máx. 30 caracteres)."
+ 
+    for palavra in PALAVRAS_BLOQUEADAS:
+        if palavra in texto.lower():
+            return False, "Entrada bloqueada pelo guardrail."
+ 
+    if not texto.replace(" ", "").isalpha():
+        return False, "Use apenas letras."
+ 
+    return True, texto
+ 
+ 
