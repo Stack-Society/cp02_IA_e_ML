@@ -3,6 +3,7 @@ import numpy as np
 from datetime import datetime
 from pyscript import document, when
 
+# ---------- 1. Carregar dados ----------
 
 def carregar_dados():
     with open("dados.json", encoding="utf-8") as arquivo:
