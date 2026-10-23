@@ -98,3 +98,79 @@ def preencher_select():
         opcoes += f'<option value="{i["id"]}">{i["nome"]}</option>'
 
     select.innerHTML = opcoes
+
+
+# ---------- 6. Eventos ----------
+@when("click", "#btn-buscar")
+def buscar(event):
+    texto = document.querySelector("#campo-busca").value
+    msg = document.querySelector("#msg-validacao")
+
+    valido, resultado = validar_entrada(texto)
+
+    if not valido:
+        msg.innerText = resultado
+        msg.className = "erro"
+        registrar_telemetria(f"Busca bloqueada: {resultado}")
+        return
+
+    filtrados = [
+        i for i in instrumentos
+        if resultado.lower() in i["nome"].lower()
+    ]
+
+    renderizar_cards(filtrados)
+
+    msg.innerText = f"{len(filtrados)} resultado(s)."
+    msg.className = "ok"
+
+    registrar_telemetria(f"Busca por '{resultado}'")
+
+
+@when("click", "#btn-analisar")
+def analisar(event):
+    select = document.querySelector("#select-instrumento")
+
+    if not select.value:
+        return
+
+    id_escolhido = int(select.value)
+
+    instrumento = next(
+        (i for i in instrumentos if i["id"] == id_escolhido),
+        None
+    )
+
+    if instrumento is None:
+        return
+
+    norma = calcular_norma(instrumento["embedding"])
+    parecido = mais_parecido(instrumento)
+
+    if parecido is not None:
+        distancia = calcular_distancia(
+            instrumento["embedding"],
+            parecido["embedding"]
+        )
+
+        resultado_parecido = (
+            f"<p>Mais parecido: {parecido['nome']} "
+            f"(distância {distancia:.4f})</p>"
+        )
+    else:
+        resultado_parecido = (
+            "<p>Não há outro instrumento para comparar.</p>"
+        )
+
+    document.querySelector("#resultado-vetor").innerHTML = f"""
+        <p>
+            <b>{instrumento['nome']}</b>
+            - vetor: {instrumento['embedding']}
+        </p>
+        <p>Norma Euclidiana: {norma:.4f}</p>
+        {resultado_parecido}
+    """
+
+    registrar_telemetria(
+        f"Análise vetorial: {instrumento['nome']}"
+    )
