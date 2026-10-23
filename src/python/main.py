@@ -65,3 +65,36 @@ def mais_parecido(instrumento):
     return min(outros, key=lambda i: calcular_distancia(instrumento["embedding"], i["embedding"]))
 
 
+# ---------- 5. Renderização ----------
+def renderizar_cards(lista):
+    container = document.querySelector("#lista-instrumentos")
+
+    if not lista:
+        container.innerHTML = "<p>Nenhum instrumento encontrado.</p>"
+        return
+
+    html = ""
+
+    for i in lista:
+        html += f"""
+        <div class="card">
+            <img src="{i['imagem']}" alt="{i['nome']}">
+            <h3>{i['nome']}</h3>
+            <p>{i['categoria']}</p>
+            <p>Estoque: {i['estoque']}</p>
+            <p>Aula: R$ {i['preco_aula']:.2f}</p>
+        </div>
+        """
+
+    container.innerHTML = html
+
+
+def preencher_select():
+    select = document.querySelector("#select-instrumento")
+
+    opcoes = ""
+
+    for i in instrumentos:
+        opcoes += f'<option value="{i["id"]}">{i["nome"]}</option>'
+
+    select.innerHTML = opcoes
