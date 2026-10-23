@@ -5,7 +5,7 @@
       "id": 1,
       "nome": "Violão",
       "categoria": "Cordas",
-      "imagem": "src/assets/violao.png",
+      "imagem": "src/assets/violao.jpg",
       "estoque": 8,
       "preco_aula": 80.0,
       "embedding": [0.8, 0.2, 0.1, 0.5]
@@ -14,7 +14,7 @@
       "id": 2,
       "nome": "Piano",
       "categoria": "Teclas",
-      "imagem": "src/assets/piano.png",
+      "imagem": "src/assets/piano.jpg",
       "estoque": 3,
       "preco_aula": 120.0,
       "embedding": [0.3, 0.9, 0.2, 0.7]
@@ -23,7 +23,7 @@
       "id": 3,
       "nome": "Violino",
       "categoria": "Cordas",
-      "imagem": "src/assets/violino.png",
+      "imagem": "src/assets/violino.jpg",
       "estoque": 5,
       "preco_aula": 110.0,
       "embedding": [0.9, 0.4, 0.1, 0.8]
@@ -32,7 +32,7 @@
       "id": 4,
       "nome": "Bateria",
       "categoria": "Percussão",
-      "imagem": "src/assets/bateria.png",
+      "imagem": "src/assets/bateria.jpg",
       "estoque": 2,
       "preco_aula": 90.0,
       "embedding": [0.1, 0.2, 0.9, 0.4]
@@ -41,7 +41,7 @@
       "id": 5,
       "nome": "Saxofone",
       "categoria": "Sopro",
-      "imagem": "src/assets/saxofone.png",
+      "imagem": "src/assets/saxofone.jpg",
       "estoque": 4,
       "preco_aula": 100.0,
       "embedding": [0.2, 0.5, 0.3, 0.9]
