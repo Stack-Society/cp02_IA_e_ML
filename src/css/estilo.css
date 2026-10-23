@@ -1,0 +1,141 @@
+
+/* ===== Variáveis ===== */
+:root {
+  --cor-primaria: #2c3e50;
+  --cor-destaque: #e67e22;
+  --cor-fundo: #f4f4f4;
+  --cor-card: #ffffff;
+  --cor-erro: #c0392b;
+  --cor-ok: #27ae60;
+  --raio: 8px;
+  --espaco: 16px;
+}
+
+/* ===== Base ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--cor-fundo);
+  color: var(--cor-primaria);
+}
+
+header {
+  background: var(--cor-primaria);
+  color: #fff;
+  text-align: center;
+  padding: var(--espaco);
+}
+
+header h1 {
+  margin: 0;
+}
+
+/* ===== Layout do painel ===== */
+.painel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--espaco);
+  padding: var(--espaco);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.bloco {
+  background: var(--cor-card);
+  padding: var(--espaco);
+  border-radius: var(--raio);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Grid de instrumentos ===== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: var(--raio);
+  padding: 8px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+  width: 100%;
+  height: 90px;
+  object-fit: contain;
+}
+
+.card h3 {
+  margin: 6px 0 4px;
+  font-size: 16px;
+}
+
+.card p {
+  margin: 2px 0;
+  font-size: 13px;
+}
+
+/* ===== Formulários ===== */
+input,
+select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: var(--raio);
+  width: 60%;
+}
+
+button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: var(--raio);
+  background: var(--cor-destaque);
+  color: #fff;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+/* ===== Mensagens ===== */
+.erro {
+  color: var(--cor-erro);
+}
+
+.ok {
+  color: var(--cor-ok);
+}
+
+/* ===== Telemetria ===== */
+#log-telemetria {
+  max-height: 200px;
+  overflow-y: auto;
+  font-size: 13px;
+  padding-left: 18px;
+}
+
+/* ===== Responsivo ===== */
+@media (max-width: 700px) {
+  .painel {
+    grid-template-columns: 1fr;
+  }
+
+  input,
+  select {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+}

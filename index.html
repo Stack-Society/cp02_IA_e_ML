@@ -1,35 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkpoint 2 - Escola de Música</title>
-
-    <link rel="stylesheet" href="src/css/estilo.css">
-
-    <link rel="stylesheet" href="https://pyscript.net/releases/2024.11.1/core.css">
-    <script type="module" src="https://pyscript.net/releases/2024.11.1/core.js"></script>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel - Escola de Música</title>
+ 
+  <link rel="stylesheet" href="src/css/estilo.css">
+ 
+  <!-- PyScript -->
+  <link rel="stylesheet" href="https://pyscript.net/releases/2024.11.1/core.css">
+  <script type="module" src="https://pyscript.net/releases/2024.11.1/core.js"></script>
 </head>
 <body>
-
-    <header>
-        <h1>Escola de Música Harmonia</h1>
-        <p>Painel Multimodal</p>
-    </header>
-
-    <main class="painel">
-
-        <section class="bloco">
-            <h2>Buscar instrumento</h2>
-            <input type="text" id="campo-busca" placeholder="Ex: piano">
-            <button id="botao-busca">Buscar</button>
-            <p id="msg-validacao"></p>
-        </section>
-
-        
-
-    </main>
-    
+ 
+  <header>
+    <h1>Escola de Música Harmonia</h1>
+    <p>Painel Multimodal</p>
+  </header>
+ 
+  <main class="painel">
+ 
+    <!-- Busca com guardrail -->
+    <section class="bloco">
+      <h2>Buscar instrumento</h2>
+      <input type="text" id="campo-busca" placeholder="Ex.: piano">
+      <button id="btn-buscar">Buscar</button>
+      <p id="msg-validacao"></p>
+    </section>
+ 
+    <!-- Cards dos instrumentos -->
+    <section class="bloco">
+      <h2>Instrumentos</h2>
+      <div id="lista-instrumentos" class="grid">
+        <p>Carregando...</p>
+      </div>
+    </section>
+ 
+    <!-- Embeddings / Norma Euclidiana -->
+    <section class="bloco">
+      <h2>Análise vetorial</h2>
+      <select id="select-instrumento"></select>
+      <button id="btn-analisar">Analisar</button>
+      <div id="resultado-vetor"></div>
+    </section>
+ 
+    <!-- Telemetria -->
+    <section class="bloco">
+      <h2>Telemetria</h2>
+      <ul id="log-telemetria"></ul>
+    </section>
+ 
+  </main>
+ 
+  <script type="py" src="src/python/main.py"
+          config='{"packages": ["numpy"], "files": {"src/python/dados.json": "dados.json"}}'></script>
+ 
 </body>
 </html>
